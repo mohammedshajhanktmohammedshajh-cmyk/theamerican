@@ -27,7 +27,7 @@ const Login = () => {
       password: '',
     });
        
-      
+    
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -39,22 +39,47 @@ const Login = () => {
 
     const handleLogin = async () => {
       if (!userDetails.email.trim() || !userDetails.password.trim()) {
+       
         alert('All fields are required');
         return;
+        
       }
 
       try {
               const response = await axios.post(`${API_URL}/auth/login`, {
                 email: userDetails.email.trim(),
                 password: userDetails.password,
+                
               });
-              alert(response.data?.message || 'Login successful.');
-              navigate("/dashboard");
+
+              
+              
+              const username = response.data?.username
+                || response.data?.user?.username
+                || response.data?.data?.user?.username
+                || userDetails.email.trim().split('@')[0];
+                  
+                
+             
+
+              alert( 'Login successful.');
+              
+              
+             
+              localStorage.setItem('username', response.data?.user?.username );
+              localStorage.setItem('token', response.data.token);
+              navigate('/dashboard', { state: { username } });
             } catch (error) {
               console.log("response error =>", error.response?.data?.message || error.message);
               alert(error.response?.data?.message || 'login failed!');
             }
     };
+           
+
+
+
+
+             
 
 
 

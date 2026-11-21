@@ -82,8 +82,8 @@ const Register = () => {
           alert(response.data?.message || 'Registration successful.');
           navigate("/");
         } catch (error) {
-          console.error('Registration error:', error.response.data.message);
-          alert(error.response?.data?.message || 'Registration failed!');
+          console.error('Registration error:', error);
+          alert(error.response?.data?.message ||error.message ||'registration failed!');
         }
        
 
