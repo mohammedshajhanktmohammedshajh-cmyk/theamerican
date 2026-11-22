@@ -103,7 +103,7 @@ const Login = () => {
 
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 2 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 2, width: '320px' }}>
       <Typography variant="h4">Login page</Typography>
       <Box sx={{ mt: 2 }}>
         <TextField
