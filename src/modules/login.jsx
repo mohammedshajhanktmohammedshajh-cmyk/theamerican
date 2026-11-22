@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-import {Button, TextField, InputAdornment, IconButton,} from '@mui/material'
+import {Button, TextField, InputAdornment, IconButton,} from '@mui/material';
 import axios from 'axios';
 
 import Visibility from    '@mui/icons-material/Visibility';
@@ -15,8 +15,10 @@ const Login = () => {
      const API_URL = import.meta.env.VITE_API_URL;
     const[showPassword, setShowPassword] = useState(false);
          const handleClickShowPassword = () => {
-            setShowPassword(!showPassword);
-         }
+            setShowPassword((prev) => !prev);
+         };
+
+         
         
           
           
