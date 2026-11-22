@@ -107,16 +107,19 @@ const Login = () => {
       <Typography variant="h4">Login page</Typography>
       <Box sx={{ mt: 2 }}>
         <TextField
+          size="small"
           name="email"
           label="email"
           placeholder="enter your email"
           value={userDetails.email}
           onChange={handleChange}
+          sx={{ width: '320px' }}
         />
       </Box>
 
       <Box>
         <TextField
+          size="small"
           name="password"
           label="password"
           placeholder="enter your password"
