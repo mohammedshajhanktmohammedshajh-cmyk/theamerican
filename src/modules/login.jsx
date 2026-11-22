@@ -103,62 +103,65 @@ const Login = () => {
 
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 2, width: '320px' }}>
-      <Typography variant="h4">Login page</Typography>
-      <Box sx={{ mt: 2 }}>
-        <TextField
-          fullWidth
-          size="small"
-          name="email"
-          label="email"
-          placeholder="enter your email"
-          value={userDetails.email}
-          onChange={handleChange}
+    <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', pt: 4 }}>
 
-        />
-      </Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 2, width: '320px' }}>
+        <Typography variant="h4">Login page</Typography>
+        <Box sx={{ mt: 2 }}>
+          <TextField
+            fullWidth
+            size="small"
+            name="email"
+            label="email"
+            placeholder="enter your email"
+            value={userDetails.email}
+            onChange={handleChange}
 
-      <Box>
-        <TextField
-          fullWidth
-          size="small"
-          name="password"
-          label="password"
-          placeholder="enter your password"
-          type={showPassword ? 'text' : 'password'}
-          value={userDetails.password}
-          onChange={handleChange}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    type="button"
-                    aria-label={showPassword ? 'Hide password' : 'Show password'}
-                    onClick={handleClickShowPassword}
-                    edge="end"
-                    sx={{ color: 'text.secondary' }}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            },
-          }}
-        />
-      </Box>
+          />
+        </Box>
 
-      <Box>
-        <Button variant="contained" onClick={handleLogin}>Login</Button>
-      </Box>
-      <Box>
-        <Button variant="outlined" onClick={() => navigate('/register')}>
-          create an account
+        <Box>
+          <TextField
+            fullWidth
+            size="small"
+            name="password"
+            label="password"
+            placeholder="enter your password"
+            type={showPassword ? 'text' : 'password'}
+            value={userDetails.password}
+            onChange={handleChange}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      type="button"
+                      aria-label={showPassword ? 'Hide password' : 'Show password'}
+                      onClick={handleClickShowPassword}
+                      edge="end"
+                      sx={{ color: 'text.secondary' }}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
+          />
+        </Box>
+
+        <Box>
+          <Button variant="contained" onClick={handleLogin}>Login</Button>
+        </Box>
+        <Box>
+          <Button variant="outlined" onClick={() => navigate('/register')}>
+            create an account
+          </Button>
+        </Box>
+        <Button onClick={() => setCount(count + 1)} disabled={disablebtn}>
+          count {count}
         </Button>
       </Box>
-      <Button onClick={() => setCount(count + 1)} disabled={disablebtn}>
-        count {count}
-      </Button>
     </Box>
   );
 }
