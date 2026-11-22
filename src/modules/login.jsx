@@ -1,130 +1,130 @@
 import { Box, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import {useNavigate} from 'react-router-dom';
-import {Button, TextField, InputAdornment, IconButton,} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Button, TextField, InputAdornment, IconButton, } from '@mui/material';
 import axios from 'axios';
 
-import Visibility from    '@mui/icons-material/Visibility';
-import VisibilityOff     from '@mui/icons-material/VisibilityOff';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 
 
 
 const Login = () => {
-    const navigate = useNavigate();
-     const API_URL = import.meta.env.VITE_API_URL;
-    const[showPassword, setShowPassword] = useState(false);
-         const handleClickShowPassword = () => {
-            setShowPassword((prev) => !prev);
-         };
-
-         
-        
-          
-          
-    const [count, setCount] = useState(0);
-    const [disablebtn, setDisableButton] = useState(false);
-    const [userDetails, setUserDetails] = useState({
-      email: '',
-      password: '',
-    });
-       
-    
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setUserDetails((prevDetails) => ({
-            ...prevDetails,
-            [name]: value,
-        }));
-    };
-
-    const handleLogin = async () => {
-      if (!userDetails.email.trim() || !userDetails.password.trim()) {
-       
-        alert('All fields are required');
-        return;
-        
-      }
-
-      try {
-              const response = await axios.post(`${API_URL}/auth/login`, {
-                email: userDetails.email.trim(),
-                password: userDetails.password,
-                
-              });
-
-              
-              
-              const username = response.data?.username
-                || response.data?.user?.username
-                || response.data?.data?.user?.username
-                || userDetails.email.trim().split('@')[0];
-                  
-                
-             
-
-              alert( 'Login successful.');
-              
-              
-             
-              localStorage.setItem('username', response.data?.user?.username );
-              localStorage.setItem('token', response.data.token);
-              navigate('/dashboard', { state: { username } });
-            } catch (error) {
-              console.log("response error =>", error.response?.data?.message || error.message);
-              alert(error.response?.data?.message || 'login failed!');
-            }
-    };
-           
+  const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
 
 
 
-             
+
+  const [count, setCount] = useState(0);
+  const [disablebtn, setDisableButton] = useState(false);
+  const [userDetails, setUserDetails] = useState({
+    email: '',
+    password: '',
+  });
+
+
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUserDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
+
+  const handleLogin = async () => {
+    if (!userDetails.email.trim() || !userDetails.password.trim()) {
+
+      alert('All fields are required');
+      return;
+
+    }
+
+    try {
+      const response = await axios.post(`${API_URL}/auth/login`, {
+        email: userDetails.email.trim(),
+        password: userDetails.password,
+
+      });
+
+
+
+      const username = response.data?.username
+        || response.data?.user?.username
+        || response.data?.data?.user?.username
+        || userDetails.email.trim().split('@')[0];
 
 
 
 
-    useEffect(() => {
-        console.log("login updating", count);
-        if (count === 10) {
-            setDisableButton(true);
-        }
-    }, [count]);
-
-   // useEffect(() => {
-       // console.log("login mounted");
-       // return () => {
-           // console.log("login unmounted");
-       // };
-   // }, []);
+      alert('Login successful.');
 
 
 
-    return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 2 }}>
-            <Typography  variant="h4">Login page</Typography>
-            <Box sx={{mt: 2}}>
-               <TextField
-                 name="email"
-                 label="email"
-                 placeholder="enter your email"
-                 value={userDetails.email}
-                 onChange={handleChange}
-               />
-            </Box>
-           
-        <Box>                  
-          <TextField
-            name="password"
-            label="password"
-            placeholder="enter your password"
-            type={showPassword ? 'text' : 'password'}
-            value={userDetails.password}
-            onChange={handleChange}
-           
-            InputProps={{
+      localStorage.setItem('username', response.data?.user?.username);
+      localStorage.setItem('token', response.data.token);
+      navigate('/dashboard', { state: { username } });
+    } catch (error) {
+      console.log("response error =>", error.response?.data?.message || error.message);
+      alert(error.response?.data?.message || 'login failed!');
+    }
+  };
+
+
+
+
+
+
+
+
+
+
+  useEffect(() => {
+    console.log("login updating", count);
+    if (count === 10) {
+      setDisableButton(true);
+    }
+  }, [count]);
+
+  // useEffect(() => {
+  // console.log("login mounted");
+  // return () => {
+  // console.log("login unmounted");
+  // };
+  // }, []);
+
+
+
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 2 }}>
+      <Typography variant="h4">Login page</Typography>
+      <Box sx={{ mt: 2 }}>
+        <TextField
+          name="email"
+          label="email"
+          placeholder="enter your email"
+          value={userDetails.email}
+          onChange={handleChange}
+        />
+      </Box>
+
+      <Box>
+        <TextField
+          name="password"
+          label="password"
+          placeholder="enter your password"
+          type={showPassword ? 'text' : 'password'}
+          value={userDetails.password}
+          onChange={handleChange}
+          slotProps={{
+            input: {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
@@ -138,23 +138,24 @@ const Login = () => {
                   </IconButton>
                 </InputAdornment>
               ),
-            }}
-          />
-        </Box>
-            
-            <Box>
-              <Button variant="contained" onClick={handleLogin}>Login</Button>
-            </Box>
-            <Box>
-             <Button variant="outlined" onClick={() => navigate('/register')}>
-                 create an account
-              </Button>
-            </Box>
-            <Button onClick={() => setCount(count + 1)} disabled={disablebtn}>
-                count {count}
-            </Button>
-        </Box>
-    );
+            },
+          }}
+        />
+      </Box>
+
+      <Box>
+        <Button variant="contained" onClick={handleLogin}>Login</Button>
+      </Box>
+      <Box>
+        <Button variant="outlined" onClick={() => navigate('/register')}>
+          create an account
+        </Button>
+      </Box>
+      <Button onClick={() => setCount(count + 1)} disabled={disablebtn}>
+        count {count}
+      </Button>
+    </Box>
+  );
 }
 
 
