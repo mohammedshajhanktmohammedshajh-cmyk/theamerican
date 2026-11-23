@@ -28,109 +28,110 @@ const Register = () => {
   });
   const [confirmPassword, setConfirmPassword] = useState('');
 
-   
-    
 
-  
 
-    
-    
-    console.log("userDetails::::", userDetails);
 
-    /**
-     * 处理输入框变化的函数
-     * @param {Event} event - 输入框变化事件对象
-     */
-    const handleChange = (event) => {
-        // 从事件对象中获取输入框的name和value
-     const { name, value } = event.target;
-      
-      setUserDetails((prevstate) => ({
-        ...prevstate,
-        [name]: value,
-       
 
-      }));
+
+
+
+  console.log("userDetails::::", userDetails);
+
+  /**
+   * 处理输入框变化的函数
+   * @param {Event} event - 输入框变化事件对象
+   */
+  const handleChange = (event) => {
+    // 从事件对象中获取输入框的name和value
+    const { name, value } = event.target;
+
+    setUserDetails((prevstate) => ({
+      ...prevstate,
+      [name]: value,
+
+
+    }));
+  };
+
+  const handleRegister = async () => {
+    console.log("all details", userDetails);
+    console.log(!userDetails.username, !userDetails.lastname, !userDetails.email, !userDetails.password,
+    );
+    if (
+      !userDetails.username ||
+      !userDetails.lastname ||
+      !userDetails.email ||
+      !userDetails.password
+    ) {
+      alert("Please fill in all the required fields.");
+      return;
+    }
+
+    if (userDetails.password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    const payload = {
+      username: userDetails.username,
+
+      email: userDetails.email,
+      password: userDetails.password,
     };
-
-     const handleRegister = async () => {
-       console.log("all details", userDetails);
-       console.log (!userDetails.username,  !userDetails.lastname,   !userDetails.email,   !userDetails.password, 
-       );
-       if (
-        !userDetails.username ||
-        !userDetails.lastname ||
-        !userDetails.email ||
-        !userDetails.password
-       ) {
-         alert("Please fill in all the required fields.");
-         return;
-       }
-
-       if (userDetails.password !== confirmPassword) {
-           alert("Passwords do not match!");
-           return;
-        }
-        const payload = {
-          username: userDetails.username,
-          
-          email: userDetails.email,
-          password: userDetails.password,
-        };
-        try {
-          const response = await axios.post(`${API_URL}/auth/register`, payload);
-          alert(response.data?.message || 'Registration successful.');
-          navigate("/");
-        } catch (error) {
-          console.error('Registration error:', error);
-          alert(error.response?.data?.message ||error.message ||'registration failed!');
-        }
-       
+    try {
+      const response = await axios.post(`${API_URL}/auth/register`, payload);
+      alert(response.data?.message || 'Registration successful.');
+      navigate("/");
+    } catch (error) {
+      console.error('Registration error:', error);
+      alert(error.response?.data?.message || error.message || 'registration failed!');
+    }
 
 
 
-  
-      };
-     
 
-   // useEffect(() => {
-    //  console.log('register mounted');//
-      //return () => {
-      
-       // console.log('register unmounted');
-     // };
+
+  };
+
+
+  // useEffect(() => {
+  //  console.log('register mounted');//
+  //return () => {
+
+  // console.log('register unmounted');
+  // };
   //  }, []);
 
-    return (
-      <>
-        <h1>Register page</h1>
-        <Box>
+  return (
+    <>
+      <h1>Register page</h1>
+      <Box>
 
-        
-           <TextField name="username" label="username" placeholder="enter your username" value={userDetails.username} onChange={handleChange} />
-        </Box>
-          
-        <br />
-        <Box>
-          <TextField name="lastname" label="lastname" placeholder="enter your lastname" value={userDetails.lastname} onChange={handleChange} />
-          
-        </Box>
-        <br />
-        <Box>
-          <TextField name="email" label="email" placeholder="enter your email" value={userDetails.email} onChange={handleChange} />
-          
-            
-        </Box>
-        <br />
-        <Box>
-          <TextField
-            name="password"
-            label="password"
-            placeholder="enter your password"
-            type={showPassword ? 'text' : 'password'}
-            value={userDetails.password}
-            onChange={handleChange}
-            InputProps={{
+
+        <TextField name="username" label="username" placeholder="enter your username" value={userDetails.username} onChange={handleChange} />
+      </Box>
+
+      <br />
+      <Box>
+        <TextField name="lastname" label="lastname" placeholder="enter your lastname" value={userDetails.lastname} onChange={handleChange} />
+
+      </Box>
+      <br />
+      <Box>
+        <TextField name="email" label="email" placeholder="enter your email" value={userDetails.email} onChange={handleChange} />
+
+
+      </Box>
+      <br />
+      <Box>
+        <TextField
+          name="password"
+          label="password"
+          placeholder="enter your password"
+          type={showPassword ? 'text' : 'password'}
+          value={userDetails.password}
+          onChange={handleChange}
+          slotProps={{
+            input: {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
@@ -144,37 +145,38 @@ const Register = () => {
                   </IconButton>
                 </InputAdornment>
               ),
-            }}
-          />
-        </Box>
+            },
+          }}
+        />
+      </Box>
 
-        <br />
-        <Box>
-          <TextField
-            name="confirmPassword"
-            label="confirm password"
-            placeholder="re-enter your password"
-            type={showPassword ? 'text' : 'password'}
-            value={confirmPassword}
-            onChange={(event) => setConfirmPassword(event.target.value)}
-          />
-        </Box>
+      <br />
+      <Box>
+        <TextField
+          name="confirmPassword"
+          label="confirm password"
+          placeholder="re-enter your password"
+          type={showPassword ? 'text' : 'password'}
+          value={confirmPassword}
+          onChange={(event) => setConfirmPassword(event.target.value)}
+        />
+      </Box>
 
-        <br />
-        <Box>
-          <button type="button" onClick={() => navigate('/login')}>
-            Login
-          </button>
-        </Box>
+      <br />
+      <Box>
+        <button type="button" onClick={() => navigate('/login')}>
+          Login
+        </button>
+      </Box>
 
-        <br />
-        <Box>
-          <Button variant="contained" color="primary" onClick={handleRegister}>
-            Register
-          </Button>
-        </Box>
-      </>
-    );
+      <br />
+      <Box>
+        <Button variant="contained" color="primary" onClick={handleRegister}>
+          Register
+        </Button>
+      </Box>
+    </>
+  );
 
 };
 
