@@ -20,6 +20,10 @@ const Register = () => {
     setShowPassword((prev) => !prev);
   };
 
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
+
+
   const [userDetails, setUserDetails] = useState({
     username: '',
     lastname: '',
@@ -156,12 +160,29 @@ const Register = () => {
           name="confirmPassword"
           label="confirm password"
           placeholder="re-enter your password"
-          type={showPassword ? 'text' : 'password'}
+          type={showConfirmPassword ? 'text' : 'password'}
           value={confirmPassword}
           onChange={(event) => setConfirmPassword(event.target.value)}
+          sx={{ width: '300px' }}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    type="button"
+                    aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                    onClick={handleClickShowConfirmPassword}
+                    edge="end"
+                    sx={{ color: 'text.secondary' }}
+                  >
+                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            },
+          }}
         />
       </Box>
-
       <br />
       <Box>
         <button type="button" onClick={() => navigate('/login')}>
