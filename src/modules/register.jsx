@@ -126,33 +126,35 @@ const Register = () => {
 
       </Box>
       <br />
-      <Box>
-        <TextField
-          name="password"
-          label="password"
-          placeholder="enter your password"
-          type={showPassword ? 'text' : 'password'}
-          value={userDetails.password}
-          onChange={handleChange}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    type="button"
-                    aria-label={showPassword ? 'Hide password' : 'Show password'}
-                    onClick={handleClickShowPassword}
-                    edge="end"
-                    sx={{ color: 'text.secondary' }}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            },
-          }}
-        />
-      </Box>
+      {/* Use this same Box + TextField pattern for ALL fields (username, lastname, email, password, confirmPassword) */}
+<Box sx={{ width: '300px', mx: 'auto' }}>
+  <TextField
+    fullWidth
+    name="password"
+    label="password"
+    placeholder="enter your password"
+    type={showPassword ? 'text' : 'password'}
+    value={userDetails.password}
+    onChange={handleChange}
+    slotProps={{
+      input: {
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              type="button"
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              onClick={handleClickShowPassword}
+              edge="end"
+              sx={{ color: 'text.secondary' }}
+            >
+              {showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+          </InputAdornment>
+        ),
+      },
+    }}
+  />
+</Box>
 
       <br />
       <Box>
