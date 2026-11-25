@@ -109,84 +109,103 @@ const Register = () => {
     <>
       <h1>Register page</h1>
       <Box>
-
-
-        <TextField name="username" label="username" placeholder="enter your username" value={userDetails.username} onChange={handleChange} />
+        <TextField
+          name="username"
+          label="username"
+          placeholder="enter your username"
+          value={userDetails.username}
+          onChange={handleChange}
+          sx={{ width: '260px' }}
+        />
       </Box>
 
       <br />
+
       <Box>
-        <TextField name="lastname" label="lastname" placeholder="enter your lastname" value={userDetails.lastname} onChange={handleChange} />
-
+        <TextField
+          name="lastname"
+          label="lastname"
+          placeholder="enter your lastname"
+          value={userDetails.lastname}
+          onChange={handleChange}
+          sx={{ width: '260px' }}
+        />
       </Box>
+
       <br />
+
       <Box>
-        <TextField name="email" label="email" placeholder="enter your email" value={userDetails.email} onChange={handleChange} />
-
-
+        <TextField
+          name="email"
+          label="email"
+          placeholder="enter your email"
+          value={userDetails.email}
+          onChange={handleChange}
+          sx={{ width: '260px' }}
+        />
       </Box>
       <br />
-     {/* PASSWORD */}
-<Box>
-  <TextField
-    name="password"
-    label="password"
-    placeholder="enter your password"
-    type={showPassword ? 'text' : 'password'}
-    value={userDetails.password}
-    onChange={handleChange}
-    sx={{ width: '223px' }}
-    slotProps={{
-      input: {
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton
-              type="button"
-              aria-label={showPassword ? 'Hide password' : 'Show password'}
-              onClick={handleClickShowPassword}
-              edge="end"
-              sx={{ color: 'text.secondary' }}
-            >
-              {showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          </InputAdornment>
-        ),
-      },
-    }}
-  />
-</Box>
+      {/* PASSWORD */}
+      <Box>
+        <TextField
+          name="password"
+          label="password"
+          placeholder="enter your password"
+          type={showPassword ? 'text' : 'password'}
+          value={userDetails.password}
+          onChange={handleChange}
+          sx={{ width: '260px' }}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    type="button"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    onClick={handleClickShowPassword}
+                    edge="end"
+                    sx={{ color: 'text.secondary' }}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            },
+          }}
+        />
+      </Box>
 
-<br />
+      <br />
 
-{/* CONFIRM PASSWORD */}
-<Box>
-  <TextField
-    name="confirmPassword"
-    label="confirm password"
-    placeholder="re-enter your password"
-    type={showConfirmPassword ? 'text' : 'password'}
-    value={confirmPassword}
-    onChange={(event) => setConfirmPassword(event.target.value)}
-    sx={{ width: '223px' }}
-    slotProps={{
-      input: {
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton
-              type="button"
-              aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
-              onClick={handleClickShowConfirmPassword}
-              edge="end"
-              sx={{ color: 'text.secondary' }}
-            >
-              {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          </InputAdornment>
-        ),
-      },
-    }}
-  />
-</Box>
+      {/* CONFIRM PASSWORD */}
+      <Box>
+        <TextField
+          name="confirmPassword"
+          label="confirm password"
+          placeholder="re-enter your password"
+          type={showConfirmPassword ? 'text' : 'password'}
+          value={confirmPassword}
+          onChange={(event) => setConfirmPassword(event.target.value)}
+          sx={{ width: '260px' }}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    type="button"
+                    aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                    onClick={handleClickShowConfirmPassword}
+                    edge="end"
+                    sx={{ color: 'text.secondary' }}
+                  >
+                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            },
+          }}
+        />
+      </Box>
       <br />
       <Box>
         <button type="button" onClick={() => navigate('/login')}>
