@@ -126,16 +126,16 @@ const Register = () => {
 
       </Box>
       <br />
-      {/* Use this same Box + TextField pattern for ALL fields (username, lastname, email, password, confirmPassword) */}
-<Box sx={{ width: '300px', mx: 'auto' }}>
+     {/* PASSWORD */}
+<Box>
   <TextField
-    fullWidth
     name="password"
     label="password"
     placeholder="enter your password"
     type={showPassword ? 'text' : 'password'}
     value={userDetails.password}
     onChange={handleChange}
+    sx={{ width: '223px' }}
     slotProps={{
       input: {
         endAdornment: (
@@ -156,35 +156,37 @@ const Register = () => {
   />
 </Box>
 
-      <br />
-      <Box>
-        <TextField
-          name="confirmPassword"
-          label="confirm password"
-          placeholder="re-enter your password"
-          type={showConfirmPassword ? 'text' : 'password'}
-          value={confirmPassword}
-          onChange={(event) => setConfirmPassword(event.target.value)}
-          sx={{ width: '300px' }}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    type="button"
-                    aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
-                    onClick={handleClickShowConfirmPassword}
-                    edge="end"
-                    sx={{ color: 'text.secondary' }}
-                  >
-                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            },
-          }}
-        />
-      </Box>
+<br />
+
+{/* CONFIRM PASSWORD */}
+<Box>
+  <TextField
+    name="confirmPassword"
+    label="confirm password"
+    placeholder="re-enter your password"
+    type={showConfirmPassword ? 'text' : 'password'}
+    value={confirmPassword}
+    onChange={(event) => setConfirmPassword(event.target.value)}
+    sx={{ width: '223px' }}
+    slotProps={{
+      input: {
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              type="button"
+              aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+              onClick={handleClickShowConfirmPassword}
+              edge="end"
+              sx={{ color: 'text.secondary' }}
+            >
+              {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+          </InputAdornment>
+        ),
+      },
+    }}
+  />
+</Box>
       <br />
       <Box>
         <button type="button" onClick={() => navigate('/login')}>
